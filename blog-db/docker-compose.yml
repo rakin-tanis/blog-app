@@ -1,0 +1,25 @@
+# Use root/example as user/password credentials
+version: '3.8'
+
+services:
+  blog-db:
+    image: postgres:14
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+    ports:
+      # <Port exposed> : < Postgres Port running inside container>
+      - '5432:5432'
+    expose:
+      # Opens port 5432 on the container
+      - '5432'
+    volumes:
+      # Where our data will be persisted
+      - ./postgres-data:/var/lib/postgresql/data
+      # copy the sql script to create tables
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  sql:
+  scripts:
