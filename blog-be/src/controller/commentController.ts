@@ -11,7 +11,7 @@ export const getCommentById = async (req: Request, res: Response) => {
   return res.status(200).json(comment);
 };
 
-export const addPost = async (req: Request, res: Response) => {
+export const addComment = async (req: Request, res: Response) => {
   const comment = await save(req.params.postId, req.body);
   return res.status(200).json(comment);
 };

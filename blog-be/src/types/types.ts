@@ -6,7 +6,7 @@ export type Comment = {
   content: string;
 };
 
-export type Blog = {
+export type Post = {
   id: string;
   title: string;
   content: string;
