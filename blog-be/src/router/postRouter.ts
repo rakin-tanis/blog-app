@@ -12,11 +12,11 @@ import {
 const router = express.Router();
 
 router.get("/", getAllPosts);
-router.get("/:id", getPost);
-router.get("/:id/comments", getAllCommentsByPost)
 router.post('/', addPost)
-router.put("/:id/like", increaseLikeCount);
-router.put("/:id/view", increaseViewCount);
+router.get("/:id", getPost);
+router.get("/comments/:id", getAllCommentsByPost)
+router.put("/like/:id", increaseLikeCount);
+router.put("/view/:id", increaseViewCount);
 
 
 export const postRouter = router;

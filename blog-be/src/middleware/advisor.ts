@@ -11,9 +11,10 @@ export const advisor = (
   err: any,
   req: Request,
   res: Response,
-  // next: NextFunction
+  next: NextFunction
 ) => {
-  console.log("error", err);
+  console.log("ERROR", err);
+  
 
   switch (true) {
     case err instanceof NotFoundError:
@@ -35,6 +36,14 @@ export const advisor = (
       return;
 
     case err instanceof InvalidParameterError:
+      res.status(HttpStatusCode.BAD_REQUEST).json({
+        name: err.name,
+        message: err.message,
+        statusCode: HttpStatusCode.BAD_REQUEST,
+        date: new Date(err.date).toString(),
+      });
+      return;
+    case err.code === '22P02':
       res.status(HttpStatusCode.BAD_REQUEST).json({
         name: err.name,
         message: err.message,

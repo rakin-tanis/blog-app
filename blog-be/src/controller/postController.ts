@@ -1,29 +1,60 @@
-import { Request, Response } from "express";
-import { getAll, getById, like, save, view } from "../repository/postRepository";
+import { NextFunction, Request, Response } from "express";
+import { NotFoundError } from "../error/errors";
+import {
+  getAll,
+  getById,
+  like,
+  save,
+  view,
+} from "../repository/postRepository";
 
 export const getAllPosts = async (req: Request, res: Response) => {
   const posts = await getAll();
-  return res.status(200).json(posts);
+  res.status(200).json(posts);
 };
 
-export const getPost = async (req: Request, res: Response) => {
-  const post = await getById(req.params.id);
-  return res.status(200).json(post);
+export const getPost = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const post = await getById(req.params.id);
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const addPost = async (req: Request, res: Response) => {
   const comment = await save(req.body);
-  return res.status(200).json(comment);
+  res.status(200).json(comment);
 };
 
-export const increaseLikeCount = async (req: Request, res: Response) => {
-  await like(req.params.id);
-  const post = await getById(req.params.id);
-  return res.status(200).json(post);
+export const increaseLikeCount = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await like(req.params.id);
+    const post = await getById(req.params.id);
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
 };
 
-export const increaseViewCount = async (req: Request, res: Response) => {
-  await view(req.params.id);
-  const post = await getById(req.params.id);
-  return res.status(200).json(post);
+export const increaseViewCount = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await view(req.params.id);
+    const post = await getById(req.params.id);
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
 };
