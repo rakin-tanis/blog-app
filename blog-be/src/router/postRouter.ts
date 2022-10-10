@@ -6,6 +6,7 @@ import {
   getPost,
   increaseLikeCount,
   increaseViewCount,
+  searchPost,
 } from "../controller/postController";
 
 
@@ -13,6 +14,7 @@ const router = express.Router();
 
 router.get("/", getAllPosts);
 router.post('/', addPost)
+router.get("/search", searchPost);
 router.get("/:id", getPost);
 router.get("/comments/:id", getAllCommentsByPost)
 router.put("/like/:id", increaseLikeCount);

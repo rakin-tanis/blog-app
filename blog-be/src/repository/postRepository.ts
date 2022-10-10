@@ -8,6 +8,10 @@ const UPDATE_POST_LIKE = `UPDATE posts SET likeCount = likeCount + 1 WHERE id = 
 const UPDATE_POST_VIEW = `UPDATE posts SET viewCount = viewCount + 1 WHERE id = $1`;
 const INSERT_POST = `INSERT INTO posts (title, author, content, category) 
                         VALUES ($1, $2, $3, $4) RETURNING *;`;
+const SEARCH_QUERY = `SELECT * FROM posts WHERE 
+                        title LIKE $1 OR 
+                        author LIKE $2 OR 
+                        content LIKE $3;`;
 
 export const getAll = async () => {
   const posts = await pool.query(SELECT_POSTS);
@@ -43,6 +47,15 @@ export const view = async (id: string) => {
   const result = await pool.query(UPDATE_POST_VIEW, [id]);
   return result.rows[0]
 }
+
+export const search = async (searchText: string) => {
+  const result = await pool.query(SEARCH_QUERY, [
+    `%${searchText}%`,
+    `%${searchText}%`,
+    `%${searchText}%`,
+  ]);
+  return result.rows;
+};
 
 export default {
   getAll,
