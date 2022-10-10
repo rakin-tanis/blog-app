@@ -1,0 +1,101 @@
+:-webkit-any-link {
+}
+
+:-moz-any-link {
+}
+
+:any-link {
+}
+
+.App {
+  text-align: center;
+}
+
+.banner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.socialMedia{
+  display: inline;
+}
+
+.socialMediaLink {
+  margin-right: 12px;
+  cursor: pointer;
+  color: #9b9b9b;
+  display: inline;
+}
+
+.navbar ul{
+  display: flex;
+  list-style: none;
+  padding: 15px 20px;
+}
+
+.navbarLink{
+  margin-left: 8px;
+  color: #9b9b9b;
+  display: block;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: "Futura Medium", sans-serif;
+  text-decoration: none;
+}
+
+.searchBar{
+  position: relative;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.searchInput {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 600;
+  color: #694b4b;
+  padding: 12px 37px;
+}
+
+.searchInput::-webkit-input-placeholder {
+  font-weight: lighter;
+  color:#AFB2B3;
+}
+.searchInput::-moz-placeholder {
+  font-weight: lighter;
+  color:#AFB2B3;
+}
+.searchInput::-ms-input-placeholder {
+  font-weight: lighter;
+  color:#AFB2B3;
+}
+
+.searchIcon{
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  color: #9b9b9b;
+  top: 14px;
+}
+
+.searchBar .search{
+  left: 13px;
+}
+
+.searchBar .clear{
+  right: -63px;
+}
+
+.searchIcon:hover{
+  color:#4e4e4e
+}
+
+.visible{
+  display: inline;
+}
+
+.gone{
+  display: none;
+}
