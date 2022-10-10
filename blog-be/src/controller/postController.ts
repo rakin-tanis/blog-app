@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { NotFoundError } from "../error/errors";
 import {
   getAll,
   getById,
@@ -7,8 +6,9 @@ import {
   save,
   view,
 } from "../repository/postRepository";
-import url from 'url'
-import { search } from "../repository/postRepository"; 
+import url from "url";
+import { search } from "../repository/postRepository";
+import { PostReq } from "../types/types";
 
 export const getAllPosts = async (req: Request, res: Response) => {
   const posts = await getAll();
@@ -28,9 +28,21 @@ export const getPost = async (
   }
 };
 
-export const addPost = async (req: Request, res: Response) => {
-  const comment = await save(req.body);
-  res.status(200).json(comment);
+export const addPost = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const postReq: PostReq = {
+      ...req.body,
+      image: req.file?.filename,
+    };
+    const post = await save(postReq);
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
 };
 
 export const increaseLikeCount = async (
@@ -60,8 +72,6 @@ export const increaseViewCount = async (
     next(error);
   }
 };
-
-
 
 export const searchPost = async (
   req: Request,

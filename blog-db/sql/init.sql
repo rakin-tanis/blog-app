@@ -17,7 +17,8 @@ CREATE TABLE
         createDate timestamp default now() not null,
         category varchar(32) not null,
         likeCount int default 0 not null,
-        viewCount int default 0 not null 
+        viewCount int default 0 not null,
+        image varchar(255) 
     );
 
 CREATE TABLE 

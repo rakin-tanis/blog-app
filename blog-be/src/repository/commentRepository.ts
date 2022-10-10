@@ -1,5 +1,5 @@
 import { NotFoundError } from "../error/errors";
-import { Comment } from "../types/types";
+import { CommentRes } from "../types/types";
 import { pool } from "./connection";
 
 const SELECT_COMMENTS_BY_POST_ID = `SELECT * FROM comments WHERE postId = $1;`;
@@ -23,7 +23,7 @@ export const getById = async (id: string) => {
 };
 
 
-export const save = async (postId: string, comment: Comment) => {
+export const save = async (postId: string, comment: CommentRes) => {
   const result = await pool.query(INSERT_COMMENT, [
     comment.name,
     comment.email,

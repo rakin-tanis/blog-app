@@ -1,4 +1,4 @@
-export type Comment = {
+export type CommentRes = {
   id: string;
   name: string;
   email: string;
@@ -6,7 +6,7 @@ export type Comment = {
   content: string;
 };
 
-export type Post = {
+export type PostRes = {
   id: string;
   title: string;
   content: string;
@@ -15,4 +15,13 @@ export type Post = {
   category: string;
   likeCount: number;
   viewCount: number;
+  image: string;
 };
+
+export type PostReq = {
+  title: string;
+  content: string;
+  author: string;
+  category: string;
+  image: string;
+}

@@ -5,6 +5,7 @@ import { commentRouter } from "./router/commentRouter";
 import { advisor } from "./middleware/advisor";
 import { notFoundRouter } from "./router/notFoundRouter";
 import cors from "cors";
+import { imageRouter } from "./router/imageRouter";
 
 const app = express();
 dotenv.config();
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/post", postRouter);
 app.use("/api/comment", commentRouter);
+app.use("/api/image", imageRouter)
 app.use("*", notFoundRouter)
 
 app.use(advisor);

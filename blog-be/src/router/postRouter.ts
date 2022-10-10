@@ -8,12 +8,12 @@ import {
   increaseViewCount,
   searchPost,
 } from "../controller/postController";
-
+import { upload } from "../config/fileUploadConfig";
 
 const router = express.Router();
 
 router.get("/", getAllPosts);
-router.post('/', addPost)
+router.post('/', upload.single('image'), addPost)
 router.get("/search", searchPost);
 router.get("/:id", getPost);
 router.get("/comments/:id", getAllCommentsByPost)
