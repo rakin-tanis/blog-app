@@ -3,6 +3,8 @@
     "createdate",
     "fileupload",
     "fortawesome",
-    "uuidv"
+    "likecount",
+    "uuidv",
+    "viewcount"
   ]
 }

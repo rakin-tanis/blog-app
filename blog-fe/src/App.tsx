@@ -4,12 +4,10 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { RouterProvider } from "react-router-dom";
 import Router from "./Router";
 import './App.css';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
+import { iconConfig } from './configs/iconConfig'
+import { PostProvider } from './contexts/postContext';
 
-library.add(fab, fas)
-
+iconConfig();
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -18,7 +16,9 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <PostProvider>
+        <RouterProvider router={router} />
+      </PostProvider>
       <ReactQueryDevtools />
     </QueryClientProvider>
   );

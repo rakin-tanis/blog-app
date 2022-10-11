@@ -15,8 +15,8 @@ const router = express.Router();
 router.get("/", getAllPosts);
 router.post('/', upload.single('image'), addPost)
 router.get("/search", searchPost);
-router.get("/:id", getPost);
 router.get("/comments/:id", getAllCommentsByPost)
+router.get("/:id", getPost);
 router.put("/like/:id", increaseLikeCount);
 router.put("/view/:id", increaseViewCount);
 

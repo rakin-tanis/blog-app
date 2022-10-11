@@ -1,12 +1,16 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { search } from "../services/search"
+import { useContext, useState } from "react";
+import { PostContext } from "../contexts/postContext";
 
-const SearchBar = ({ searchText, setSearchText, refetch }) => {
+const SearchBar = () => {
+  const { search } = useContext(PostContext);
+  const [searchText, setSearchText] = useState("");
+
   const SEARCH_INPUT_LIMIT = 3;
 
   const handleKeyEvents = (event) => {
     if (event.key === "Enter") {
-      search(searchText);
+      searchBlogs(searchText);
     }
   };
 
@@ -15,7 +19,7 @@ const SearchBar = ({ searchText, setSearchText, refetch }) => {
       return;
     }
     console.log("search: " + value);
-    refetch();
+    search(searchText);
   };
 
   return (

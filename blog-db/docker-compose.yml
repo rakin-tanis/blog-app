@@ -21,19 +21,19 @@ services:
       # copy the sql script to create tables
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  # backend:
-  #   image: akin/blog-backend
-  #   build:
-  #     context: ../blog-be
-  #     dockerfile: Dockerfile
-  #   depends_on:
-  #     # Our app does not work without our database
-  #     # so this ensures our database is loaded first
-  #     - database
-  #   ports:
-  #     - "8080:8080"
-  #   environment:
-  #     - DB_HOST=database
+  backend:
+    image: akin/blog-backend
+    build:
+      context: ../blog-be
+      dockerfile: Dockerfile
+    depends_on:
+      # Our app does not work without our database
+      # so this ensures our database is loaded first
+      - database
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=database
 
 
       # docker-compose down
