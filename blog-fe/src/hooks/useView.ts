@@ -18,12 +18,5 @@ export const useView = () => {
     }
   })
 
-  const viewMutate = (postId: string) => {
-    if(post?.id === postId){
-      return
-    }
-    mutate(postId)
-  }
-
-  return { viewMutate };
+  return { viewMutate: mutate };
 }
