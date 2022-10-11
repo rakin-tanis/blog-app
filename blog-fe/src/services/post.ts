@@ -23,3 +23,7 @@ export const viewPost = async (postId: string) => {
   if (!postId) return;
   return await fetcher({ method: "PUT", path: `/post/view/${postId}` });
 }
+
+export const search = async (searchText: string) => {
+  return await fetcher({ method: "GET", path: `/post/search?q=${searchText}` });
+}

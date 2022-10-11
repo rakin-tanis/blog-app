@@ -12,7 +12,7 @@ const INSERT_POST = `INSERT INTO posts (title, author, content, category, image)
 const SEARCH_QUERY = `SELECT * FROM posts WHERE 
                         title LIKE $1 OR 
                         author LIKE $2 OR 
-                        content LIKE $3;`;
+                        content LIKE $3 ORDER BY createdate DESC;`;
 
 export const getAll = async () => {
   const posts = await pool.query(SELECT_POSTS);

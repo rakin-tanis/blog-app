@@ -1,6 +1,5 @@
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-common-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Link } from 'react-router-dom'
 
 const SocialMediaLinks = () => {
   const smList: { icon: [iconPrefix: IconPrefix, iconName: IconName], link: string }[] = [
@@ -35,17 +34,3 @@ const SocialMediaLinks = () => {
 };
 
 export default SocialMediaLinks;
-
-
-/* 
- <FontAwesomeIcon icon={['fab', 'instagram']} size="2x" onClick={() => openInNewTab('instagram')} />
-      <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
-        <FontAwesomeIcon icon={['fab', 'twitter']} size="2x" />
-      </a>
-      <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
-        <FontAwesomeIcon icon={['fab', 'pinterest']} size="2x" />
-      </a>
-      <a href="https://www.twitter.com" target="_blank" rel="noreferrer">
-        <FontAwesomeIcon icon={['fab', 'facebook']} size="2x" />
-      </a>
-*/

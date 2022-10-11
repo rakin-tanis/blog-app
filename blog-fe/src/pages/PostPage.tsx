@@ -5,16 +5,21 @@ import ButtonBar from "../components/ButtonBar";
 import CommentForm from "../components/CommentForm";
 import CommentList from "../components/CommentList";
 import { PostContext } from "../contexts/postContext";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { CommentProvider } from "../contexts/commentContext";
 import Footer from "../components/Footer";
+import { useView } from '../hooks/useView'
 
 const PostPage = () => {
-  const { post, view } = useContext(PostContext)
+  const { post } = useContext(PostContext)
+  const { viewMutate } = useView();
+  const postIdRef = useRef<string>()
 
   let { id } = useParams();
-  if (id) {
-    view(id);
+  
+  if (id && postIdRef.current !== id) {
+    postIdRef.current = id;
+    viewMutate(id);
   }
 
   return (post &&

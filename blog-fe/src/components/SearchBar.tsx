@@ -1,25 +1,24 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useContext, useState } from "react";
-import { PostContext } from "../contexts/postContext";
+import { PostContext } from '../contexts/postContext';
+import { useSearch } from '../hooks/useSearch';
 
 const SearchBar = () => {
-  const { search } = useContext(PostContext);
+  const { setPosts } = useContext(PostContext)
   const [searchText, setSearchText] = useState("");
+  const { search } = useSearch(searchText);
+  // const { getAll } = usePosts()
 
   const SEARCH_INPUT_LIMIT = 3;
 
-  const handleKeyEvents = (event) => {
+  const handleKeyEvents = (event: { key: string; }) => {
     if (event.key === "Enter") {
       searchBlogs(searchText);
     }
   };
 
-  const searchBlogs = (value) => {
-    if (value.length < SEARCH_INPUT_LIMIT) {
-      return;
-    }
-    console.log("search: " + value);
-    search(searchText);
+  const searchBlogs = (value: string | any[]) => {
+    search();
   };
 
   return (
@@ -28,7 +27,7 @@ const SearchBar = () => {
         className="searchIcon search"
         onClick={() => searchBlogs(searchText)}
       >
-        <FontAwesomeIcon icon={["solid", "magnifying-glass"]} />
+        <FontAwesomeIcon icon={["fas", "magnifying-glass"]} />
       </div>
       <input
         className="searchInput"
@@ -46,7 +45,7 @@ const SearchBar = () => {
         }`}
         onClick={() => setSearchText("")}
       >
-        <FontAwesomeIcon icon={["solid", "xmark"]} />
+        <FontAwesomeIcon icon={["fas", "xmark"]} />
       </div>
     </div>
   );

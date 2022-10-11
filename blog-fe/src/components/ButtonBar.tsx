@@ -1,10 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { PostContext } from "../contexts/postContext";
-import { Post } from "../types/Post";
+import { useLike } from "../hooks/useLike";
 
 const ButtonBar = (/* { post }: { post: Post } */) => {
-  const {post, like, view, search} = useContext(PostContext)
+  const { posts, post, setPosts, setPost} = useContext(PostContext)
+
+  const { likeMutate } = useLike();
+
+  const like = (postId: string) => {
+    console.log('liked')
+    likeMutate(postId)
+  }
 
   const save = () => {
     console.log('save')
