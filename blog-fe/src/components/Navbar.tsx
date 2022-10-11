@@ -17,7 +17,7 @@ const Navbar = () => {
     });
   menu.push({
     title: "Categories",
-    path: "#",
+    path: "/categories",
   })
   return (
     <div className="navbar">
