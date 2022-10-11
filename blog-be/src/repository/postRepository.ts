@@ -10,9 +10,10 @@ const UPDATE_POST_VIEW = `UPDATE posts SET viewCount = viewCount + 1 WHERE id = 
 const INSERT_POST = `INSERT INTO posts (title, author, content, category, image) 
                         VALUES ($1, $2, $3, $4, $5) RETURNING *;`;
 const SEARCH_QUERY = `SELECT * FROM posts WHERE 
-                        title LIKE $1 OR 
-                        author LIKE $2 OR 
-                        content LIKE $3 ORDER BY createdate DESC;`;
+                        LOWER(title) LIKE LOWER($1) OR 
+                        LOWER(author) LIKE LOWER($2) OR 
+                        LOWER(content) LIKE LOWER($3) 
+                        ORDER BY createdate DESC;`;
 
 export const getAll = async () => {
   const posts = await pool.query(SELECT_POSTS);
