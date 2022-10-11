@@ -14,6 +14,7 @@ export const useLike = () => {
     onSuccess: (data: Post) => {
       const oldPosts = posts.filter(p => p.id !== data.id)
       setPosts([...oldPosts, data])
+      setPost(data)
     }
   })
 

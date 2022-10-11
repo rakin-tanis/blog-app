@@ -1,4 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import moment from "moment";
 import { Link } from "react-router-dom";
 import { Post } from "../types/Post";
 
@@ -16,7 +17,10 @@ const PostItem = ({ post }: { post: Post }) => {
     <img className="postImage" src={`${process.env.REACT_APP_API_URL}/image?name=${post.image}`} alt={post.title} />
     <div className="content">
       <h3>{post.title}</h3>
-      <p><span>{post.author}</span> | <span>{post.createDate}</span></p>
+      <p>
+        <span>{post.author}</span> | {' '}
+        <span>{moment(post?.createDate).format("MMMM Do YYYY, HH:mm:ss")}</span>
+      </p>
       <p>{`${post.content.substring(0, 200)}... `}<Link className="readMore" to={`/post/${post.id}`}>{'<read more>'}</Link></p>
       <div className="cardInfo">
         <div className="items">

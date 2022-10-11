@@ -22,6 +22,10 @@ const PostPage = () => {
       postIdRef.current = id;
       viewMutate(id);
     }
+    window.scrollTo({
+      top: 0,
+      behavior: "auto",
+    });
   }, []);
 
   return (

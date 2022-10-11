@@ -3,13 +3,12 @@ import { useContext } from "react";
 import { PostContext } from "../contexts/postContext";
 import { useLike } from "../hooks/useLike";
 
-const ButtonBar = (/* { post }: { post: Post } */) => {
-  const { posts, post, setPosts, setPost} = useContext(PostContext)
+const ButtonBar = () => {
+  const { post } = useContext(PostContext)
 
   const { likeMutate } = useLike();
 
   const like = (postId: string) => {
-    console.log('liked')
     likeMutate(postId)
   }
 
