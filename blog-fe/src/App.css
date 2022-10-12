@@ -196,7 +196,7 @@ body {
   align-items: center;
 }
 
-.cardInfo .icon{
+.icon{
   cursor: pointer;
 }
 
@@ -267,11 +267,14 @@ body {
   display: flex;
   flex-direction: row;
   margin-right: 40px;
-  cursor: pointer;
 }
 
-.post .buttonBar .button:hover {
+.likeButton:hover {
   color: red;
+}
+
+.favButton:hover {
+  color: orange;
 }
 
 .post .buttonBar .button span {

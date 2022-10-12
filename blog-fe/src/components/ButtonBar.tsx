@@ -1,10 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { PostContext } from "../contexts/postContext";
+import { useFavorites } from "../hooks/useFavorites";
 import { useLike } from "../hooks/useLike";
 
 const ButtonBar = () => {
   const { post } = useContext(PostContext)
+  const { isFav, toggleFav } = useFavorites();
 
   const { likeMutate } = useLike();
 
@@ -19,7 +21,7 @@ const ButtonBar = () => {
   return (
     <div className="buttonBar">
       
-      <div className="button">
+      <div className="button likeButton">
         <span>{post?.likeCount}</span>
         <div className="icon" onClick={() => post && like(post.id)} >
           <FontAwesomeIcon icon={["far", "heart"]} size='2x' />
@@ -31,9 +33,11 @@ const ButtonBar = () => {
         <FontAwesomeIcon icon={["fas", "eye"]} size='2x' />
       </div>
 
-      <div className="button">
-        <div className="icon" onClick={save} >
-          <FontAwesomeIcon icon={["far", "bookmark"]} size='2x' />
+      <div className="button favButton">
+        <div className="icon" onClick={() => toggleFav(post?.id)} >
+        {isFav(post?.id) 
+            ? <FontAwesomeIcon icon={["fas", "star"]} size='2x' color="orange" /> 
+            : <FontAwesomeIcon icon={["far", "star"]} size='2x' />}
         </div>
       </div>
       

@@ -1,18 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { useFavorites } from "../hooks/useFavorites";
 import { Post } from "../types/Post";
 
 const PostItem = ({ post }: { post: Post }) => {
 
-  const like = () => {
-    console.log('like')
-  }
-  
-  const save = () => {
-    console.log('save')
-  }
-  
+  const { isFav, toggleFav } = useFavorites();
+
   return (post && <div className="card">
     <img className="postImage" src={`${process.env.REACT_APP_API_URL}/image?name=${post.image}`} alt={post.title} />
     <div className="content">
@@ -25,9 +20,7 @@ const PostItem = ({ post }: { post: Post }) => {
       <div className="cardInfo">
         <div className="items">
           <div className="item">
-            <div className="icon" onClick={like} >
-              <FontAwesomeIcon icon={["far", "heart"]} size='2x' />
-            </div>
+            <FontAwesomeIcon icon={["fas", "heart"]} size='2x' />
             <span>{post.likeCount}</span>
           </div>
           <div className="item">
@@ -35,8 +28,12 @@ const PostItem = ({ post }: { post: Post }) => {
             <span>{post.viewCount}</span>
           </div>
           <div className="item">
-            <div className="icon" onClick={save} >
-              <FontAwesomeIcon icon={["far", "bookmark"]} size='2x' />
+            <div className="button favButton">
+              <div className="icon" onClick={() => toggleFav(post?.id)} >
+                {isFav(post?.id)
+                  ? <FontAwesomeIcon icon={["fas", "star"]} size='2x' color="orange" />
+                  : <FontAwesomeIcon icon={["far", "star"]} size='2x' />}
+              </div>
             </div>
           </div>
         </div>
