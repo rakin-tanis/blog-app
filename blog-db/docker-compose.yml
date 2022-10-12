@@ -36,6 +36,19 @@ services:
       - DB_HOST=database
 
 
+  frontend:
+    image: akin/blog-frontend
+    build:
+      context: ../blog-fe
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+    environment:
+      - API_URL=backend
+
+
       # docker-compose down
 
       # Delete all containers using the following command:
