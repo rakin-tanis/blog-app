@@ -6,6 +6,7 @@ import { postMapper } from "../utils/postMapper";
 const SELECT_POSTS = `SELECT * FROM posts ORDER BY createdate DESC;`;
 const SELECT_POST_BY_ID = `SELECT * FROM posts WHERE id = $1;`;
 const UPDATE_POST_LIKE = `UPDATE posts SET likeCount = likeCount + 1 WHERE id = $1;`;
+const UPDATE_POST_DISLIKE = `UPDATE posts SET likeCount = likeCount - 1 WHERE id = $1;`;
 const UPDATE_POST_VIEW = `UPDATE posts SET viewCount = viewCount + 1 WHERE id = $1`;
 const INSERT_POST = `INSERT INTO posts (title, author, content, category, image) 
                         VALUES ($1, $2, $3, $4, $5) RETURNING *;`;
@@ -43,6 +44,11 @@ export const save = async (post: PostReq) => {
 
 export const like = async (id: string) => {
   const result = await pool.query(UPDATE_POST_LIKE, [id]);
+  return result.rows.map(postMapper)[0]
+}
+
+export const dislike = async (id: string) => {
+  const result = await pool.query(UPDATE_POST_DISLIKE, [id]);
   return result.rows.map(postMapper)[0]
 }
 

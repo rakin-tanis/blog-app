@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import {
+  dislike,
   getAll,
   getById,
   like,
@@ -52,6 +53,20 @@ export const increaseLikeCount = async (
 ) => {
   try {
     await like(req.params.id);
+    const post = await getById(req.params.id);
+    res.status(200).json(post);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const decreaseLikeCount = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await dislike(req.params.id);
     const post = await getById(req.params.id);
     res.status(200).json(post);
   } catch (error) {

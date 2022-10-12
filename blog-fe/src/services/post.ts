@@ -19,6 +19,11 @@ export const likePost = async (postId: string | undefined) => {
   return await fetcher({ method: "PUT", path: `/post/like/${postId}` });
 }
 
+export const dislikePost = async (postId: string | undefined) => {
+  if (!postId) return;
+  return await fetcher({ method: "PUT", path: `/post/dislike/${postId}` });
+}
+
 export const viewPost = async (postId: string) => {
   if (!postId) return;
   return await fetcher({ method: "PUT", path: `/post/view/${postId}` });

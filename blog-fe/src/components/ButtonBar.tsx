@@ -7,24 +7,17 @@ import { useLike } from "../hooks/useLike";
 const ButtonBar = () => {
   const { post } = useContext(PostContext)
   const { isFav, toggleFav } = useFavorites();
-
-  const { likeMutate } = useLike();
-
-  const like = (postId: string) => {
-    likeMutate(postId)
-  }
-
-  const save = () => {
-    console.log('save')
-  }
+  const { isLiked, toggleLike } = useLike();
 
   return (
     <div className="buttonBar">
       
       <div className="button likeButton">
         <span>{post?.likeCount}</span>
-        <div className="icon" onClick={() => post && like(post.id)} >
-          <FontAwesomeIcon icon={["far", "heart"]} size='2x' />
+        <div className="icon" onClick={() => post && toggleLike(post.id)} >
+          {isLiked(post?.id) 
+            ? <FontAwesomeIcon icon={["fas", "heart"]} size='2x' color="red" /> 
+            : <FontAwesomeIcon icon={["far", "heart"]} size='2x' />}
         </div>
       </div>
 

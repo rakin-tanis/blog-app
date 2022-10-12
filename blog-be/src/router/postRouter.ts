@@ -2,6 +2,7 @@ import express from "express";
 import { getAllCommentsByPost } from "../controller/commentController";
 import {
   addPost,
+  decreaseLikeCount,
   getAllPosts,
   getPost,
   increaseLikeCount,
@@ -18,6 +19,7 @@ router.get("/search", searchPost);
 router.get("/comments/:id", getAllCommentsByPost)
 router.get("/:id", getPost);
 router.put("/like/:id", increaseLikeCount);
+router.put("/dislike/:id", decreaseLikeCount);
 router.put("/view/:id", increaseViewCount);
 
 

@@ -2,11 +2,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import { useFavorites } from "../hooks/useFavorites";
+import { useLike } from "../hooks/useLike";
 import { Post } from "../types/Post";
 
 const PostItem = ({ post }: { post: Post }) => {
 
   const { isFav, toggleFav } = useFavorites();
+  const { isLiked, toggleLike } = useLike();
 
   return (post && <div className="card">
     <img className="postImage" src={`${process.env.REACT_APP_API_URL}/image?name=${post.image}`} alt={post.title} />
@@ -20,7 +22,13 @@ const PostItem = ({ post }: { post: Post }) => {
       <div className="cardInfo">
         <div className="items">
           <div className="item">
-            <FontAwesomeIcon icon={["fas", "heart"]} size='2x' />
+            <div className="button favButton">
+              <div className="icon" onClick={() => post && toggleLike(post.id)} >
+                {isLiked(post?.id)
+                  ? <FontAwesomeIcon icon={["fas", "heart"]} size='2x' color="red" />
+                  : <FontAwesomeIcon icon={["far", "heart"]} size='2x' />}
+              </div>
+            </div>
             <span>{post.likeCount}</span>
           </div>
           <div className="item">
